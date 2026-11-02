@@ -1,6 +1,6 @@
 # Froker Creator–Business Matching Agent
 
-Matches local businesses to the right Froker creator using pre-scoring across 4 dimensions + Claude 3.5 Sonnet reasoning. Returns a ranked shortlist with written justification per creator.
+Matches local businesses to the right creator on the platform using pre-scoring across 4 dimensions + Claude 3.5 Sonnet reasoning. Returns a ranked shortlist with written justification per creator.
 
 > Built Aug 2024 – Aug 2025 using Claude 3.5 Sonnet API directly — before MCP and modern agentic tooling existed in production-ready form. All orchestration is raw Python + direct API calls.
 
@@ -8,9 +8,9 @@ Matches local businesses to the right Froker creator using pre-scoring across 4 
 
 ## Problem
 
-Froker connects local businesses (cafes, gyms, salons, stores) with content creators for paid campaigns. The operations team was manually going through creator profiles and making gut-feel matches.
+The platform connects local businesses (cafes, gyms, salons, stores) with content creators for paid campaigns. The operations team was manually going through creator profiles and making gut-feel matches.
 
-**Result:** Wrong matches → bad content → business doesn't renew → Froker loses commission revenue. No way to scale with a small team.
+**Result:** Wrong matches → bad content → business doesn't renew → the platform loses commission revenue. No way to scale with a small team.
 
 ---
 
