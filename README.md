@@ -1,4 +1,4 @@
-# Froker Creator–Business Matching Agent
+# Creator–Business Matching Agent
 
 Matches local businesses to the right creator on the platform using pre-scoring across 4 dimensions + Claude 3.5 Sonnet reasoning. Returns a ranked shortlist with written justification per creator.
 

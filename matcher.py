@@ -1,14 +1,14 @@
 """
-Froker Creator–Business Matching Agent
+Creator–Business Matching Agent
 =======================================
-Matches local businesses to the right Froker creator using
+Matches local businesses to the right creator using
 profile scoring + Claude 3.5 Sonnet reasoning.
 
 Built Aug 2024 – Aug 2025 using raw Anthropic SDK.
 No LLM orchestration frameworks — direct API calls only.
 
 Problem:
-  Local businesses on Froker get manually matched to creators by the
+  Local businesses on the platform get manually matched to creators by the
   operations team — a gut-feel process that produces wrong matches,
   bad content, and businesses that don't renew.
 
@@ -84,7 +84,7 @@ def claude_match(business: dict, candidates: list[dict]) -> str:
         for c in candidates
     )
 
-    prompt = f"""You are a creator-brand matching expert for Froker, a creator marketplace for local businesses in Bangalore.
+    prompt = f"""You are a creator-brand matching expert for a creator marketplace that connects local businesses with content creators.
 
 A local business has submitted a campaign brief. Your job is to rank the shortlisted creators and explain your reasoning.
 
