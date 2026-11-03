@@ -75,12 +75,14 @@ def _load_matching_weights() -> tuple[float, float, float, float]:
         )
 
 
+_NICHE_W, _LOCATION_W, _ENGAGE_W, _LOCAL_W = _load_matching_weights()
+
+
 def pre_score(creator: dict, business: dict) -> float:
-    niche_w, location_w, engage_w, local_w = _load_matching_weights()
-    niche    = niche_overlap(creator, business) * niche_w
-    location = location_score(creator, business) * location_w
-    engage   = creator["avg_engagement_rate"] * 100 * engage_w
-    local    = creator["audience_local_pct"] * local_w
+    niche    = niche_overlap(creator, business) * _NICHE_W
+    location = location_score(creator, business) * _LOCATION_W
+    engage   = creator["avg_engagement_rate"] * 100 * _ENGAGE_W
+    local    = creator["audience_local_pct"] * _LOCAL_W
     return round(niche + location + engage + local, 2)
 
 
