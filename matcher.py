@@ -48,11 +48,39 @@ def location_score(creator: dict, business: dict) -> float:
     return creator["audience_local_pct"] * 0.5
 
 
+def _load_matching_weights() -> tuple[float, float, float, float]:
+    """
+    Load pre-scoring dimension weights from matching_config.py.
+
+    Weights were calibrated against historical deal outcomes (renewal rate,
+    content quality scores, business satisfaction surveys). The four weights
+    determine how much niche fit, location overlap, engagement rate, and local
+    audience % each contribute to a creator's pre-score.
+
+    Implementation: proprietary — available on request.
+    Copy matching_config.example.py → matching_config.py to run with your own values.
+    """
+    try:
+        import matching_config
+        return (
+            matching_config.NICHE_WEIGHT,
+            matching_config.LOCATION_WEIGHT,
+            matching_config.ENGAGE_WEIGHT,
+            matching_config.LOCAL_AUD_WEIGHT,
+        )
+    except ImportError:
+        raise RuntimeError(
+            "matching_config.py not found. "
+            "Copy matching_config.example.py → matching_config.py and fill in your values."
+        )
+
+
 def pre_score(creator: dict, business: dict) -> float:
-    niche    = niche_overlap(creator, business) * 40
-    location = location_score(creator, business) * 30
-    engage   = creator["avg_engagement_rate"] * 100 * 20
-    local    = creator["audience_local_pct"] * 10
+    niche_w, location_w, engage_w, local_w = _load_matching_weights()
+    niche    = niche_overlap(creator, business) * niche_w
+    location = location_score(creator, business) * location_w
+    engage   = creator["avg_engagement_rate"] * 100 * engage_w
+    local    = creator["audience_local_pct"] * local_w
     return round(niche + location + engage + local, 2)
 
 
